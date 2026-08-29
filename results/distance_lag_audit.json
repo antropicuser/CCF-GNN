@@ -1,0 +1,16 @@
+{
+  "validated": {
+    "n": 16112,
+    "mean_dist_km": 15.52,
+    "median_dist_km": 14.34,
+    "spearman_rho": 0.273,
+    "p_value": 6.952284918301057e-273
+  },
+  "confounded": {
+    "n": 7998,
+    "mean_dist_km": 16.39,
+    "median_dist_km": 14.69,
+    "spearman_rho": 0.176,
+    "p_value": 1.290237227910456e-56
+  }
+}

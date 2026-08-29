@@ -1,0 +1,81 @@
+{
+  "dataset": "METR-LA (train split, witgaw/HF mirror of DCRNN release)",
+  "n_sensors": 207,
+  "n_timesteps": 23974,
+  "missing_pct": 7.128132771855499,
+  "windows": {
+    "w1": {
+      "n_obs": 6037,
+      "candidate_pairs": 42642,
+      "n_significant_raw": 41796,
+      "n_edges": 9933,
+      "sparsity_pct": 76.7060644435064,
+      "avg_degree": 47.98550724637681,
+      "mean_tau_min": 13.85432397060304
+    },
+    "w2": {
+      "n_obs": 2001,
+      "candidate_pairs": 42642,
+      "n_significant_raw": 41298,
+      "n_edges": 10157,
+      "sparsity_pct": 76.18076075230992,
+      "avg_degree": 49.067632850241544,
+      "mean_tau_min": 7.9821797774933545
+    },
+    "w3": {
+      "n_obs": 1992,
+      "candidate_pairs": 42642,
+      "n_significant_raw": 41046,
+      "n_edges": 12394,
+      "sparsity_pct": 70.93475915763801,
+      "avg_degree": 59.8743961352657,
+      "mean_tau_min": 8.381071486203002
+    },
+    "w4": {
+      "n_obs": 4980,
+      "candidate_pairs": 42642,
+      "n_significant_raw": 40069,
+      "n_edges": 2198,
+      "sparsity_pct": 94.84545753013461,
+      "avg_degree": 10.618357487922705,
+      "mean_tau_min": 6.17606915377616
+    },
+    "w5": {
+      "n_obs": 3984,
+      "candidate_pairs": 42642,
+      "n_significant_raw": 39990,
+      "n_edges": 7427,
+      "sparsity_pct": 82.58289948876694,
+      "avg_degree": 35.8792270531401,
+      "mean_tau_min": 13.531708630671872
+    },
+    "w6": {
+      "n_obs": 4980,
+      "candidate_pairs": 42642,
+      "n_significant_raw": 39756,
+      "n_edges": 3119,
+      "sparsity_pct": 92.68561512124197,
+      "avg_degree": 15.067632850241546,
+      "mean_tau_min": 5.727797370952228
+    }
+  },
+  "aggregated": {
+    "n_edges": 24179,
+    "sparsity_pct": 43.29768772571643,
+    "avg_degree": 116.80676328502416,
+    "validated": 16181,
+    "confounded": 7998,
+    "median_lag_min": 15.386251772753816,
+    "p75_lag_min": 22.877492283306914,
+    "p95_lag_min": 34.1073663135063,
+    "modal_lag_min": 5,
+    "lag_feasibility_pct": 22.730468588444516
+  },
+  "adf": {
+    "tested": 360,
+    "fail_before": 0,
+    "fail_after": 0,
+    "fail_before_pct": 0.0,
+    "fail_after_pct": 0.0
+  }
+}

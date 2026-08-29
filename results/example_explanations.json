@@ -1,0 +1,34 @@
+{
+  "target": 101,
+  "edges": [
+    {
+      "source": 133,
+      "target": 101,
+      "lag_min": 5.0,
+      "rho": 0.7,
+      "intensity": "strong"
+    },
+    {
+      "source": 134,
+      "target": 101,
+      "lag_min": 5.0,
+      "rho": 0.67,
+      "intensity": "strong"
+    },
+    {
+      "source": 124,
+      "target": 101,
+      "lag_min": 5.0,
+      "rho": 0.53,
+      "intensity": "moderate"
+    },
+    {
+      "source": 49,
+      "target": 101,
+      "lag_min": 10.222324184533244,
+      "rho": 0.45,
+      "intensity": "moderate"
+    }
+  ],
+  "explanation": "The predicted traffic state at sensor 101 is influenced by: (1) strong conditions at upstream sensor 133, approximately 5 minutes earlier (rho = 0.70); (2) strong conditions at upstream sensor 134, approximately 5 minutes earlier (rho = 0.67); (3) moderate conditions at upstream sensor 124, approximately 5 minutes earlier (rho = 0.53); (4) moderate conditions at upstream sensor 49, approximately 10 minutes earlier (rho = 0.45)."
+}

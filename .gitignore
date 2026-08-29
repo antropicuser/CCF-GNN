@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/*win*.npz
+data/*_parquet/
+*.log
+nohup.out
