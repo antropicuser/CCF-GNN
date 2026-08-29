@@ -5,12 +5,9 @@
 %% Requires sn-jnl.cls and sn-basic.bst in the same folder (Springer Nature
 %% LaTeX template, https://www.springernature.com/gp/authors/campaigns/latex-author-support)
 %%
-%% HONESTY NOTES FOR THE AUTHORS (delete before submission):
-%%  * Every number marked \tbd{...} MUST be replaced by results from the full
-%%    protocol (experiments/README.md). Do not submit with red placeholders.
-%%  * Tables in tables/ are auto-generated from real runs by
-%%    experiments/make_tables.py — do not edit them by hand.
-%%  * Fill author/affiliation/funding details.
+%% STATUS: submission draft. All tables/figures are auto-generated from REAL
+%% runs (experiments/make_*.py; results shipped in the repository) — do not edit by hand.
+%% Code availability: https://github.com/antropicuser/CCF-GNN
 %% ============================================================================
 \documentclass[pdflatex,sn-basic]{sn-jnl}
 
@@ -20,6 +17,7 @@
 \usepackage{amsthm}
 \usepackage{booktabs}
 \usepackage{xcolor}
+\usepackage{url}
 
 \newtheorem{proposition}{Proposition}
 \newtheorem{remark}{Remark}
@@ -38,9 +36,7 @@
 \title[CCF-GNN: Auditing Time-Lagged Correlation Graphs for Traffic Forecasting]{How Reliable Are Time-Lagged Correlation Graphs for Traffic Forecasting? An Empirical Audit and the Screened-Hybrid CCF-GNN}
 
 \author*[1]{\fnm{Morteza} \sur{Farid Agh Ghaleh}}\email{morteza.farid.a@gmail.com}
-\equalcont{These authors contributed equally to this work.}
 \author[1]{\fnm{Ebrahim} \sur{Akbari}}
-\equalcont{These authors contributed equally to this work.}
 \author[1]{\fnm{Homayoon} \sur{Motameni}}
 
 \affil*[1]{\orgdiv{Faculty of Computer Science}, \orgname{Islamic Azad University, Sari Branch}, \orgaddress{\city{Sari}, \country{Iran}}}
@@ -254,8 +250,8 @@ in the graph but demoted at initialisation (Section~\ref{sec:hybrid}).
 
 \paragraph{Aggregation and degree cap.} Per-regime evidence is aggregated into a single edge set
 by a sample-size-weighted mean of $|\rho^{*}|$, and each target node keeps its $K_g{=}10$
-strongest incoming edges (a capacity cap consistent with the sensitivity analysis in
-Section~5.4 of the reduced protocol and with the density regime of road networks). The result is
+strongest incoming edges (a capacity cap consistent with the density regime of road networks;
+component ablations at reduced scale in Section~\ref{sec:pilot}). The result is
 the prior $\Ac$ (edge weights), a binary mask $M$ (edge existence), the validation-type matrix
 $\mathbf{V}\in\{\textsc{valid},\textsc{conf}\}$, and lag tables $\tau^{*}_{ij}(w)$.
 
@@ -344,7 +340,9 @@ deterministic mappings in the data-to-text tradition \cite{reiter1997}.
 remove the $K$ explained sensors' inputs and measure the relative change of the prediction
 \cite{ying2019gnnexplainer}, reporting the score of CCF-GNN's own explanations and, for
 reference, of post-hoc explainers applied to the same trained model (GNNExplainer
-\cite{ying2019gnnexplainer}, SubgraphX \cite{yuan2021subgraphx}, attention maps).
+\cite{ying2019gnnexplainer}, SubgraphX \cite{yuan2021subgraphx}, attention maps);
+the evaluation code is released and, like all comparisons we have not executed, its results
+are not reported in this paper (Section~\ref{sec:explquality}).
 
 \subsection{Complexity}\label{sec:complexity}
 
@@ -360,7 +358,9 @@ selection) with zero training overhead.
 \subsection{Datasets}\label{sec:datasets}
 
 We follow the standard benchmark suite (Table~\ref{tab:datasets}). All series are 5-minute
-resolution; splits are chronological 70/10/20.
+resolution; splits are chronological 70/10/20. All experiments executed in this paper use
+METR-LA; the remaining datasets are supported by the released pipeline configuration for the
+full-benchmark protocol (Section~\ref{sec:protocol}, third tier) but were not executed here.
 
 \begin{table}[t]
 \centering\small
@@ -409,7 +409,7 @@ reference points only and are never mixed into our computations.
 \subsection{Anatomy of the CCF graph on real data (METR-LA)}\label{sec:graph-anatomy}
 
 Table~\ref{tab:graph_stats} reports the regime-wise construction statistics \emph{computed on the
-real METR-LA training split} by our released pipeline. Three findings shape the method.
+real METR-LA training split} by our released pipeline. Four findings shape the method.
 First, with $T_w\!\approx\!2${,}000--6{,}000, raw significance is nearly vacuous: 93--98\% of
 directed pairs pass $p<0.05$ in every regime, so the effect-size threshold is the binding
 constraint---a point often obscured in the causal-graph literature. Second, the union graph over
@@ -592,7 +592,7 @@ draws). (a) Absolute masked MAE: CCF-GNN remains below Graph WaveNet at every le
 \subsection{Grounded explanations on real data}\label{sec:explquality}
 
 The deployed explainer is deterministic: rank in-edges of the target node by
-Eq.~(6), keep the top-$K$ \emph{validated} tuples, and render fixed templates.
+Eq.~\eqref{eq:importance}, keep the top-$K$ \emph{validated} tuples, and render fixed templates.
 Table~\ref{tab:example} shows a real example produced by the released pipeline from the
 screened METR-LA graph---every number in the sentence and the table traces to a specific
 screened edge statistic, and the rendering is reproducible bit-for-bit. Because tuple ranking
@@ -657,10 +657,12 @@ Not applicable. (If the optional operator study is included, an IRB statement is
 \subsection*{Data availability}
 All datasets are public: METR-LA/PEMS-BAY \cite{li2019dcrnn} and PeMSD4/7/8 \cite{song2020stsgcn}.
 \subsection*{Code availability}
-Full pipeline (CCF construction, models, training, masked evaluation, table generation, seeds)
-is provided as online supplementary material with the submission and will be archived in a
-public repository upon acceptance; every table in this paper is generated by a script from raw
-run logs.
+The full pipeline (CCF construction, models, training, masked evaluation, table and figure
+generation, seeds, trained checkpoints, and every raw result file backing the numbers in this
+paper) is publicly available at
+\url{https://github.com/antropicuser/CCF-GNN}; the repository README maps each paper claim to
+the script that reproduces it. Every table and figure in this paper is generated by a script
+from raw run logs; a DOI-archived snapshot (Zenodo) will accompany acceptance.
 
 \subsection*{Author contribution}
 \textbf{Morteza Farid Agh Ghaleh:} Conceptualization, Methodology, Software, Investigation,
